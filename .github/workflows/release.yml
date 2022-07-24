@@ -45,9 +45,9 @@ jobs:
       id: auto_release
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        title: NPWD Release | ${{ steps.get_tag.outputs.VERSION_TAG }}
+        title: NPWD Dispatch Release | ${{ steps.get_tag.outputs.VERSION_TAG }}
         prerelease: false
-        files: npwd.zip
+        files: npwd-dispatch.zip
 
       env:
         CI: false
