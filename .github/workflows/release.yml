@@ -39,3 +39,16 @@ jobs:
         cp ./{LICENSE,README.md,fxmanifest.lua} ./temp/npwd-dispatch
         cp -r ./dist ./temp/npwd-dispatch
         cd ./temp && zip -r ../npwd-dispatch.zip ./npwd-dispatch
+
+    - name: Create Release
+      uses: "marvinpinto/action-automatic-releases@v1.2.1"
+      id: auto_release
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        title: NPWD Release | ${{ steps.get_tag.outputs.VERSION_TAG }}
+        prerelease: false
+        files: npwd.zip
+
+      env:
+        CI: false
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
