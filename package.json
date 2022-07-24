@@ -1,0 +1,20 @@
+{
+  "name": "npwd-dispatch",
+  "scripts": {
+    "build": "webpack --mode production",
+    "watch": "webpack --watch --mode development"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@project-error/pe-utils": "^0.3.0"
+  },
+  "devDependencies": {
+    "@citizenfx/client": "^2.0.5705-1",
+    "@citizenfx/server": "^2.0.5705-1",
+    "@types/node": "^16.11.10",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1"
+  }
+}
