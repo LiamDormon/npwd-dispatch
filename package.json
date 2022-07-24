@@ -4,7 +4,7 @@
     "build": "webpack --mode production",
     "watch": "webpack --watch --mode development"
   },
-  "license": "MIT",
+  "license": "GPL-3.0",
   "dependencies": {
     "@project-error/pe-utils": "^0.3.0"
   },
