@@ -37,7 +37,7 @@ exp.npwd.onMessage(emergencyNumber, (ctx: OnMessageExportCtx) => {
   const senderNumber = exp.npwd.getPhoneNumber(ctx.source)
   const dispatchers = dispatchService.getAll().filter(val => val.number !== senderNumber)
 
-  if (!dispatchers) {
+  if (!dispatchers || !dispatchers.length) {
     return exp.npwd.emitMessage({
       senderNumber: emergencyNumber,
       targetNumber: senderNumber,
