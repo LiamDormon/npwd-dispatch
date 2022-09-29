@@ -11,11 +11,11 @@ class DispatchService {
     return this.dispatchers.has(src)
   }
 
-  public newDispatcher(src: number): void {
-    const number: string = global.exports["npwd"].getPhoneNumber(Number(src))
+  public async newDispatcher(src: number): Promise<void> {
+    const { phoneNumber } = await exports.npwd.getPlayerData({ source: src })
     this.dispatchers.set(src, {
       src,
-      number
+      number: phoneNumber
     })
   }
 

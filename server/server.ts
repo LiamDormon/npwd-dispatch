@@ -33,14 +33,14 @@ exp.npwd.onCall(emergencyNumber, async (ctx: OnCallExportCtx) => {
   ctx.forward(dispatcher)
 })
 
-exp.npwd.onMessage(emergencyNumber, (ctx: OnMessageExportCtx) => {
-  const senderNumber = exp.npwd.getPhoneNumber(ctx.source)
-  const dispatchers = dispatchService.getAll().filter(val => val.number !== senderNumber)
+exp.npwd.onMessage(emergencyNumber, async (ctx: OnMessageExportCtx) => {
+  const { phoneNumber } = await exports.npwd.getPlayerData({ source: ctx.source })
+  const dispatchers = dispatchService.getAll().filter(val => val.number !== phoneNumber)
 
   if (!dispatchers || !dispatchers.length) {
     return exp.npwd.emitMessage({
       senderNumber: emergencyNumber,
-      targetNumber: senderNumber,
+      targetNumber: phoneNumber,
       message: "Sorry, there are no operators able to handle this request right now."
     })
   }
@@ -55,7 +55,7 @@ exp.npwd.onMessage(emergencyNumber, (ctx: OnMessageExportCtx) => {
       embed: {
         type: "location",
         coords,
-        phoneNumber: senderNumber
+        phoneNumber: phoneNumber
       }
     })
   })
